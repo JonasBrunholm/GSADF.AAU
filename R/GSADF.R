@@ -39,7 +39,7 @@ GSADF <- function(ticker, x = NULL, min_window = 30,
   distri_tibbles <- c(
     "DF_distribution.RData",
     "DF_distribution_drift.RData",
-    "DF_distribution_drift_trend.RData",
+    "DF_distribution_drift_trend.RData"
   )
   load(distri_tibbles[t_val_model_nr])
   distribution_tibble <- if (t_val_model_nr == 1) {
