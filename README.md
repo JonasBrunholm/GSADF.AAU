@@ -1,10 +1,10 @@
 ---
-output: github_document
+  output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+  <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+  ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -16,15 +16,15 @@ knitr::opts_chunk$set(
 # GSADF.AAU
 
 <!-- badges: start -->
-<!-- badges: end -->
+  <!-- badges: end -->
 
-The goal of GSADF.AAU is to ...
+  The goal of GSADF.AAU is to ...
 
 ## Installation
 
 You can install the released version of GSADF.AAU from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+  ``` r
 install.packages("GSADF.AAU")
 ```
 
@@ -32,14 +32,14 @@ install.packages("GSADF.AAU")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+  ```{r example}
 library(GSADF.AAU)
 ## basic example code
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
+  ```{r cars}
 summary(cars)
 ```
 
