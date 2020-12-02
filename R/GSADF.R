@@ -59,13 +59,13 @@ GSADF <- function(ticker, x = NULL, min_window = 30,
       x_window <- x[(step_length * i):((step_length * i) + window_size)]
       plot_data <- tibble::tibble(t = seq_along(x_window), x_window)
       if (drift == F & trend == F) {
-        model <- lm(diff(x_window) ~ 0 + na.omit(lag(x_window)), data = plot_data)
+        model <- lm(diff(x_window) ~ 0 + na.omit(dplyr::lag(x_window)), data = plot_data)
       }
       if (drift == T & trend == F) {
-        model <- lm(diff(x_window) ~ na.omit(lag(x_window)), data = plot_data)
+        model <- lm(diff(x_window) ~ na.omit(dplyr::lag(x_window)), data = plot_data)
       }
       if (drift == T & trend == T) {
-        model <- lm(diff(x_window) ~ t[-1] + na.omit(lag(x_window)), data = plot_data)
+        model <- lm(diff(x_window) ~ t[-1] + na.omit(dplyr::lag(x_window)), data = plot_data)
       }
       coef_model <- coefficients(summary(model))
       result[k_ind, "estimate"] <- coef_model[t_val_model_nr, 1]
