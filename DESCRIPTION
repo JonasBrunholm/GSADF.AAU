@@ -20,6 +20,8 @@ Imports: tidyverse,
          gridExtra,
          plyr,
          tidyquant,
-         dplyr
+         dplyr,
+         magrittr
 Depends: 
     R (>= 2.10)
+    
