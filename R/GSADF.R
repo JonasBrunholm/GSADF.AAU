@@ -23,7 +23,7 @@ GSADF <- function(ticker, x = NULL, min_window = 30,
                   drift = F, trend = F, risk_free_rate = 0.01) {
   if (is.null(x)) {
     stock_data <- tidyquant::tq_get(ticker, from = date_from, to = date_to) %>%
-      select(date, adjusted) %>%
+      dplyr::select(date, adjusted) %>%
       na.omit()
     x <- discount(p = stock_data$adjusted, r = risk_free_rate)
     date_x <- stock_data$date
