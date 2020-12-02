@@ -40,7 +40,8 @@ plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq
     ggplot2::scale_x_date(date_labels = "%Y %b", date_breaks = "2 month") +
     ggplot2::xlab("") +
     ggplot2::ylab(paste("Price in", valuta)) +
-    ggplot2::labs(title = aktie)
+    ggplot2::labs(title = aktie) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
 
 
 
@@ -48,7 +49,8 @@ plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq
   bubble <- ggplot2::ggplot(data = plot_data_combined, aes(x = x, y = value, color = name)) +
     ggplot2::geom_line(size = 1) +
     ggplot2::scale_x_date(date_labels = "%Y %b", date_breaks = "2 month") +
-    ggplot2::theme(legend.position = "bottom") +
+    ggplot2::theme(legend.position = "bottom",
+                   axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)) +
     ggplot2::xlab("") +
     ggplot2::ylab("Count")
 
