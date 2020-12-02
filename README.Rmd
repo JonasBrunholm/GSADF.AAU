@@ -28,6 +28,12 @@ You can install the released version of GSADF.AAU from [CRAN](https://CRAN.R-pro
 install.packages("GSADF.AAU")
 ```
 
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Rasmusdamaau/GSADF.AAU")
+```
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
