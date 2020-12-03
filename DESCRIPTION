@@ -21,6 +21,7 @@ Imports: tidyverse,
          plyr,
          tidyquant,
          dplyr,
-         magrittr
+         magrittr,
+         ggpubr
 Depends: 
     R (>= 2.10)
