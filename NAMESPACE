@@ -3,6 +3,7 @@
 export("%>%")
 export(DF_distribution)
 export(GSADF)
+export(Tabel_GSADF)
 export(combined_count)
 export(discount)
 export(p_val_fun)

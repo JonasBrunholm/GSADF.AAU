@@ -1,0 +1,24 @@
+---
+title: "how_to"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+indsæt roxygen skelet
+
+"Code" -> “Insert Roxygen Skeleton”
+
+
+Husk:
+
+Tools -> Project Options… -> Build Tools, and ensure that “Generate documentation with roxygen” is checked, and that “Automatically run roxygen when running install and restart” is checked in the subsequent “Configure” menu
+
+
+library(usethis)
+use_readme_rmd()
+use_data(exampleData)
+

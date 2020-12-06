@@ -3,25 +3,26 @@
 #' This function summarises the largest p-values of the result of GSADF
 #'
 #' @param gsadf Output from GSADF
+#'
 #' @return Summary of largest p-value
 #' @export
 
 
 
 
-tabel_gsadf <- function(gsadf) {
-max_data <- tibble::tibble(gsadf_u$result) %>%
+Tabel_GSADF <- function(gsadf) {
+max_data <- tibble::tibble(gsadf$result) %>%
   dplyr::filter(p_val == base::max(p_val))
-start_date <- gsadf_u$stock$date[1]
+start_date <- gsadf$stock$date[1]
 count <- max_data %>% base::nrow()
 value <- max_data$p_val[1]
 interval_longest <- max_data %>% dplyr::slice_max(interval_length)
 interval_longest_values <- c(interval_longest$start_day + lubridate::ymd(start_date),
                              interval_longest$end_day + lubridate::ymd(start_date))
 
-price_change_longest <- ((gsadf_u$stock$price[interval_longest$end_day] -
-                           gsadf_u$stock$price[base::max(interval_longest$start_day,1)]) /
-  gsadf_u$stock$price[base::max(interval_longest$start_day,1)]) * 100
+price_change_longest <- ((gsadf$stock$price[interval_longest$end_day] -
+                           gsadf$stock$price[base::max(interval_longest$start_day,1)]) /
+  gsadf$stock$price[base::max(interval_longest$start_day,1)]) * 100
 
 price_change_longest <- format(round(price_change_longest,2), nsmall = 2)
 

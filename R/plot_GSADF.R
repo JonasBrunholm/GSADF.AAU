@@ -1,3 +1,17 @@
+#' Plot function for result of GSADF
+#'
+#' @param u No drift no trend
+#' @param d Drift
+#' @param d_t Drift and Trend
+#' @param p_restrict Only accepts p values larger than
+#' @param start_date_tq_get Start date from GSADF
+#' @param image_name If not null then makes a pdf with the name
+#' @param valuta Currency
+#' @param aktie Asset
+#'
+#' @return
+#' @export
+#'
 plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq_get = "2020-01-01",
                        image_name = NULL, valuta = "valuta", aktie = "aktie") {
 
@@ -6,7 +20,7 @@ plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq
                                !is.null(d_t) ~ 3)
   plot_data_combined <- combined_count(u = u, d_t = d_t, d = d, p_restrict = p_restrict)
 
-  plot_data_rect <- tibble(u$result) %>%
+  plot_data_rect <- tibble::tibble(u$result) %>%
     dplyr::filter(p_val == max(p_val)) %>%
     dplyr::filter(interval_length == max(interval_length)) %>%
     dplyr::mutate(
@@ -18,7 +32,7 @@ plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq
   stock <- ggplot2::ggplot(data = u$stock, ggplot2::aes(x = date, y = price)) +
     ggplot2::geom_line(size = 1) +
     ggplot2::geom_rect(
-      data = plot_data_rect, aes(xmin = date_start, xmax = date_end),
+      data = plot_data_rect, ggplot2::aes(xmin = date_start, xmax = date_end),
       ymin = -Inf, ymax = Inf, alpha = 0.7, inherit.aes = F
     ) +
     ggplot2::scale_x_date(date_labels = "%Y %b", date_breaks = "2 month") +
@@ -30,7 +44,7 @@ plot_GSADF <- function(u, d = NULL, d_t = NULL, p_restrict = 0.95, start_date_tq
 
 
 
-  bubble <- ggplot2::ggplot(data = plot_data_combined, aes(x = x, y = value, color = name)) +
+  bubble <- ggplot2::ggplot(data = plot_data_combined, ggplot2::aes(x = x, y = value, color = name)) +
     ggplot2::geom_line(size = 1) +
     ggplot2::scale_x_date(date_labels = "%Y %b", date_breaks = "2 month") +
     ggplot2::theme(legend.position = "bottom",

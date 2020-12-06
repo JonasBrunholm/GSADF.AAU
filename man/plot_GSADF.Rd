@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_GSADF.R
 \name{plot_GSADF}
 \alias{plot_GSADF}
-\title{Plot the result of GSADF}
+\title{Plot function for result of GSADF}
 \usage{
 plot_GSADF(
   u,
@@ -16,26 +16,25 @@ plot_GSADF(
 )
 }
 \arguments{
-\item{u}{Result from GSADF with drift and trend = FALSE}
+\item{u}{No drift no trend}
 
-\item{d}{Result from GSADF with drif = TRUE and trend = FALSE}
+\item{d}{Drift}
 
-\item{d_t}{Result from GSADF with drift = TRUE and trend = TRUE}
+\item{d_t}{Drift and Trend}
 
-\item{p_restrict}{Keep only intervals with p value more than}
+\item{p_restrict}{Only accepts p values larger than}
 
-\item{start_date_tq_get}{The date from from your GSADF call}
+\item{start_date_tq_get}{Start date from GSADF}
 
-\item{image_name}{Name of resulting pdf file, given in character}
+\item{image_name}{If not null then makes a pdf with the name}
 
-\item{valuta}{Currency of asset, given in character}
+\item{valuta}{Currency}
 
-\item{aktie}{Name of asset, given in character}
+\item{aktie}{Asset}
 }
 \value{
-A plot if image_name = NULL, else create a pdf file with name image_name
+
 }
 \description{
-This function takes the result of GSADF and returns a plot if the variable image_name is NULL
-if it is not NULL then a pdf file will be created with the name given to image_name
+Plot function for result of GSADF
 }

@@ -11,10 +11,11 @@ GSADF(
   step_length = 5,
   window_increase = 10,
   date_from = "1900-01-01",
-  date_to = Sys.Date(),
+  date_to = base::Sys.Date(),
   drift = F,
   trend = F,
-  risk_free_rate = 0.01
+  risk_free_rate = 0.01,
+  own_df_distribution = NULL
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ GSADF(
 \item{trend}{TRUE if trend, FALSE if no trend}
 
 \item{risk_free_rate}{Numeric value giving the yearly inflation}
+
+\item{own_df_distribution}{If Null, will use simulated distributions in package, can input your own, generated from DF_distribution}
 }
 \value{
 list with with "stock" containing the price of the asset and "result" containing
