@@ -5,7 +5,7 @@
 \title{Plot function for result of GSADF}
 \usage{
 plot_GSADF(
-  u,
+  u = NULL,
   d = NULL,
   d_t = NULL,
   p_restrict = 0.95,
