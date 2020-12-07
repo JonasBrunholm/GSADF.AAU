@@ -4,6 +4,7 @@
 #'
 #' @param ticker Ticker code from yahoo finance of the asset
 #' @param x vector of prices if no ticker code is available
+#' @param df_distribution Input result from DF_distribution or the existing tibbles in the package
 #' @param min_window Minimum size of the window to test for unit root
 #' @param step_length The size that the window will move for every step
 #' @param window_increase How much the window size should increase every iteration
@@ -12,7 +13,6 @@
 #' @param drift TRUE if drift, FALSE if no drift
 #' @param trend TRUE if trend, FALSE if no trend
 #' @param risk_free_rate Numeric value giving the yearly inflation
-#' @param own_df_distribution If Null, will use simulated distributions in package, can input your own, generated from DF_distribution
 #' @return list with with "stock" containing the price of the asset and "result" containing
 #' the result of the GSADF, meaning a a tibble containing interval lengths, estimates,
 #'  p values and more
