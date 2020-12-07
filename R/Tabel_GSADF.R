@@ -9,52 +9,40 @@
 
 
 
-
 Tabel_GSADF <- function(gsadf) {
-max_data <- tibble::tibble(gsadf$result) %>%
-  dplyr::filter(p_val == base::max(p_val))
-start_date <- gsadf$stock$date[1]
-count <- max_data %>% base::nrow()
-value <- max_data$p_val[1]
-interval_longest <- max_data %>% dplyr::slice_max(interval_length)
-interval_longest_values <- c(interval_longest$start_day + lubridate::ymd(start_date),
-                             interval_longest$end_day + lubridate::ymd(start_date))
-
-price_change_longest <- ((gsadf$stock$price[interval_longest$end_day] -
-                           gsadf$stock$price[base::max(interval_longest$start_day,1)]) /
-  gsadf$stock$price[base::max(interval_longest$start_day,1)]) * 100
-
-price_change_longest <- format(round(price_change_longest,2), nsmall = 2)
-
-# first_date_data <- max_data %>% dplyr::slice_min(start_day)
-# first_date_interval <- lubridate::ymd(start_date) +
-#   base::c(first_date_data$start_day, first_date_data$end_day)
-#
-# last_date_data <- max_data %>% dplyr::slice_max(end_day)
-# last_date_interval <- lubridate::ymd(start_date) +
-#   base::c(last_date_data$start_day, last_date_data$end_day)
+  max_data <- tibble::tibble(gsadf$result) %>% dplyr::filter(p_val ==
+    base::max(p_val))
+  start_date <- gsadf$stock$date[1]
+  count <- max_data %>% base::nrow()
+  value <- max_data$p_val[1]
+  interval_longest <- max_data %>% dplyr::slice_max(interval_length)
+  interval_longest_values <- base::c(
+    gsadf$stock$date[interval_longest$start_day],
+    gsadf$stock$date[interval_longest$end_day]
+  )
+  start_day_int_long <- interval_longest$start_day
+  if (interval_longest$start_day == 0) {
+    start_day_int_long <- 1
+  }
 
 
-mean_startday <- base::mean(max_data$start_day) + lubridate::ymd(start_date)
-mean_endday <- base::mean(max_data$end_day) + lubridate::ymd(start_date)
+  price_change_longest <- ((gsadf$stock$price[interval_longest$end_day] -
+    gsadf$stock$price[start_day_int_long]) / gsadf$stock$price[base::max(
+    interval_longest$start_day,
+    1
+  )]) * 100
+  price_change_longest <- base::format(base::round(
+    price_change_longest,
+    2
+  ), nsmall = 2)
+  mean_startday <- gsadf$stock$date[round(base::mean(max_data$start_day))]
+  mean_endday <- gsadf$stock$date[round(base::mean(max_data$end_day))]
+  output <- base::list(
+    count = count, value = value, interval_longest = interval_longest_values,
+    price_change_longest = base::paste(price_change_longest, "%",
+      sep = " "
+    ), mean_startday = mean_startday, mean_endday = mean_endday
+  )
 
-output <- base::list(count = count,
-                     value = value,
-                     interval_longest = interval_longest_values,
-                     price_change_longest = paste(price_change_longest, "%", sep = " "),
-                     # first_date_interval = first_date_interval,
-                     # last_date_interval = last_date_interval,
-                     mean_startday = mean_startday,
-                     mean_endday = mean_endday)
-
-base::return(output)
-# hvor mange
-# hvad den er
-# interval på det længste
-# price change i procent
-# første dato helt interval
-# sidste dato helt interval
-
+  base::return(output)
 }
-
-
