@@ -36,6 +36,11 @@ GSADF <- function(ticker, x = NULL, min_window = 30, step_length = 5,
   t_val_model_nr <- dplyr::case_when(drift == F & trend ==
     F ~ 1, drift == T & trend == F ~ 2, drift == T & trend ==
     T ~ 3)
+
+  load("df_distri.rda")
+  load("df_distri_drift.rda")
+  load("df_distri_drift_trend.rda")
+
   if (base::is.null(own_df_distribution)) {
     distribution_tibble <- if (t_val_model_nr == 1) {
       df_distri
