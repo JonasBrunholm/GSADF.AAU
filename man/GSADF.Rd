@@ -7,6 +7,7 @@
 GSADF(
   ticker,
   x = NULL,
+  df_distribution,
   min_window = 30,
   step_length = 5,
   window_increase = 10,
@@ -14,14 +15,15 @@ GSADF(
   date_to = base::Sys.Date(),
   drift = F,
   trend = F,
-  risk_free_rate = 0.01,
-  own_df_distribution = NULL
+  risk_free_rate = 0.01
 )
 }
 \arguments{
 \item{ticker}{Ticker code from yahoo finance of the asset}
 
 \item{x}{vector of prices if no ticker code is available}
+
+\item{df_distribution}{Input result from DF_distribution or the existing tibbles in the package}
 
 \item{min_window}{Minimum size of the window to test for unit root}
 
@@ -38,8 +40,6 @@ GSADF(
 \item{trend}{TRUE if trend, FALSE if no trend}
 
 \item{risk_free_rate}{Numeric value giving the yearly inflation}
-
-\item{own_df_distribution}{If Null, will use simulated distributions in package, can input your own, generated from DF_distribution}
 }
 \value{
 list with with "stock" containing the price of the asset and "result" containing
