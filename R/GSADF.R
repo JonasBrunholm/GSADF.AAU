@@ -20,7 +20,7 @@
 
 GSADF <- function(ticker, x = NULL, min_window = 30, step_length = 5,
                   window_increase = 10, date_from = "1900-01-01", date_to = base::Sys.Date(),
-                  drift = F, trend = F, risk_free_rate = 0.01, own_df_distribution = NULL) {
+                  drift = F, trend = F, risk_free_rate = 0.01, df_distribution = NULL) {
   if (base::is.null(x)) {
     stock_data <- tidyquant::tq_get(ticker,
       from = date_from,
@@ -41,20 +41,22 @@ GSADF <- function(ticker, x = NULL, min_window = 30, step_length = 5,
   # load("df_distri_drift.rda")
   # load("df_distri_drift_trend.rda")
 
-  if (base::is.null(own_df_distribution)) {
-    distribution_tibble <- if (t_val_model_nr == 1) {
-      df_distri
-    }
-    else if (t_val_model_nr == 2) {
-      df_distri_drift
-    }
-    else if (t_val_model_nr == 3) {
-      df_distri_drift_trend
-    }
-  }
-  else {
-    distribution_tibble <- own_df_distribution
-  }
+  distribution_tibble <- df_distribution
+
+  # if (base::is.null(own_df_distribution)) {
+  #   distribution_tibble <- if (t_val_model_nr == 1) {
+  #     df_distri
+  #   }
+  #   else if (t_val_model_nr == 2) {
+  #     df_distri_drift
+  #   }
+  #   else if (t_val_model_nr == 3) {
+  #     df_distri_drift_trend
+  #   }
+  # }
+  # else {
+  #   distribution_tibble <- own_df_distribution
+  # }
   result <- tibble::tibble()
   k_ind <- 1
   while (window_size < (nrow_x - step_length)) {
