@@ -19,8 +19,9 @@
 #' @export
 
 GSADF <- function(ticker, x = NULL, df_distribution, min_window = 30, step_length = 5,
-                  window_increase = 10, date_from = "1900-01-01", date_to = base::Sys.Date(),
-                  drift = F, trend = F, risk_free_rate = 0.01) {
+                  window_increase = 10, date_from = "1900-01-01", date_to = base::Sys.Date(), drift = F, trend = F, risk_free_rate = 0.01) {
+{
+
   if (base::is.null(x)) {
     stock_data <- tidyquant::tq_get(ticker,
       from = date_from,
